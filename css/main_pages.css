@@ -1,0 +1,136 @@
+/* Main Site Pages - Founder's Desk & Vision */
+
+.text-reveal-section {
+    background: var(--color-base);
+    padding: var(--section-padding) 0;
+}
+
+.text-reveal-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.reveal-heading-box {
+    border-left: 3px solid var(--color-accent);
+    padding-left: 2rem;
+    margin-bottom: 4rem;
+}
+
+.reveal-heading {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    color: #fff;
+    margin: 0;
+}
+
+.reveal-content {
+    color: var(--color-text-light);
+    line-height: 2;
+    font-size: 1.15rem;
+}
+
+.reveal-content p {
+    margin-bottom: 2rem;
+}
+
+.founder-signature {
+    margin-top: 5rem;
+    text-align: right;
+}
+
+.signature-name {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    color: var(--color-accent);
+    margin-bottom: 0.5rem;
+}
+
+.signature-title {
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+}
+
+/* Vision Page Specifics */
+.vision-horizon-section {
+    background: var(--color-soft);
+    padding: var(--section-padding) 0;
+}
+
+.vision-intro {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 6rem;
+}
+
+.vision-intro h2 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+.vision-intro p {
+    color: var(--color-text-light);
+    font-size: 1.25rem;
+}
+
+.vision-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 4rem;
+}
+
+.vision-card {
+    background: var(--color-base);
+    padding: 3rem;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    transition: var(--transition-smooth);
+}
+
+.vision-card:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-5px);
+}
+
+.vision-card h3 {
+    color: var(--color-accent);
+    margin-bottom: 1.5rem;
+}
+
+.vision-card p {
+    color: var(--color-text-light);
+}
+
+.vision-cta-section {
+    background: var(--color-base);
+    text-align: center;
+    padding: var(--section-padding) 0;
+}
+
+.vision-cta-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.vision-cta-container h2 {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.vision-cta-container p {
+    color: var(--color-text-light);
+    margin-bottom: 3rem;
+    font-size: 1.15rem;
+}
+
+/* Home Page Specifics */
+.highlights-section {
+    background: var(--color-base);
+}
+
+.highlight-image-placeholder {
+    background: var(--color-soft);
+    border: 1px solid var(--color-border);
+}

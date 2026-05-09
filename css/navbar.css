@@ -1,0 +1,313 @@
+/* ── Google Fonts import (fallback if base.html doesn't load first) ── */
+
+a {
+  text-decoration: none !important;
+}
+
+:root {
+  /* NAVBAR (dark) */
+  --nav-bg:            rgba(8, 6, 2, 0.97);
+  --nav-border:        rgba(212, 175, 55, 0.18);
+  --nav-accent:        #D4AF37;
+  --nav-accent-light:  #F5E27A;
+  --nav-accent-deep:   #A07C1C;
+  --nav-accent-glow:   rgba(212, 175, 55, 0.25);
+  --nav-text:          rgba(230, 210, 165, 0.85);
+  --nav-text-hover:    #D4AF37;
+  --nav-shadow:        0 4px 30px rgba(0, 0, 0, 0.6), 0 1px 0 rgba(212, 175, 55, 0.12);
+  --nav-shadow-scroll: 0 8px 40px rgba(0, 0, 0, 0.8), 0 1px 0 rgba(212, 175, 55, 0.25);
+
+  /* FONTS */
+  --nav-font-serif:    'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --nav-font-sans:     'Jost', 'Inter', system-ui, sans-serif;
+
+  /* TRANSITIONS */
+  --nav-ease:          cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --nav-transition:    0.35s var(--nav-ease);
+}
+
+/* ============================================================
+   HEADER WRAPPER
+============================================================ */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2000;
+  background: var(--nav-bg);
+  -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--nav-border);
+  box-shadow: var(--nav-shadow);
+  transition:
+    box-shadow var(--nav-transition),
+    border-color var(--nav-transition),
+    background var(--nav-transition);
+}
+
+/* Scrolled state — tightens up & deepens glow */
+.header.scrolled,
+.navbar.scrolled {
+  /* box-shadow: var(--nav-shadow-scroll); */
+  border-bottom-color: rgba(212, 175, 55, 0.3);
+}
+
+/* Top gold shimmer line */
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--nav-accent), transparent);
+  opacity: 0;
+  transition: width 0.6s ease, opacity 0.6s ease;
+  pointer-events: none;
+}
+
+.header.scrolled::before {
+  width: 60%;
+  opacity: 0.5;
+}
+
+/* ============================================================
+   NAVBAR INNER
+============================================================ */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+  height: 72px;
+  transition: height var(--nav-transition), padding var(--nav-transition);
+}
+
+.navbar.scrolled {
+  height: 60px;
+}
+
+/* ── Left & Right link groups ── */
+.nav-left,
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.nav-left  { justify-content: flex-start; }
+.nav-right { justify-content: flex-end;   }
+.nav-center { flex: 0 0 auto; }
+
+/* ============================================================
+   LOGO
+============================================================ */
+.logo {
+  display: block;
+  text-decoration: none !important;
+}
+
+.nav-logo-text {
+  font-family: var(--nav-font-serif) !important;
+  font-size: 1.3rem !important;
+  font-weight: 600 !important;
+  color: var(--nav-accent) !important;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  margin: 0;
+  line-height: 1;
+  transition: color var(--nav-transition), letter-spacing var(--nav-transition);
+}
+
+.logo:hover .nav-logo-text {
+  color: var(--nav-accent-light) !important;
+  letter-spacing: 5px;
+}
+
+/* ============================================================
+   NAV LINKS
+============================================================ */
+.nav-link {
+  font-family: var(--nav-font-sans);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--nav-text) !important;
+  text-decoration: none !important;
+  padding: 0.45rem 0.9rem;
+  border-radius: 2px;
+  position: relative;
+  transition: color var(--nav-transition), background var(--nav-transition), transform var(--nav-transition);
+  white-space: nowrap;
+}
+
+/* Underline bar */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--nav-accent), transparent);
+  border-radius: 1px;
+  transition: width 0.4s var(--nav-ease);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--nav-accent) !important;
+  background: rgba(212, 175, 55, 0.05);
+  transform: translateY(-1px);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 80%;
+}
+
+/* Active state — slightly stronger */
+.nav-link.active {
+  color: var(--nav-accent-light) !important;
+}
+
+/* ============================================================
+   MOBILE MENU TOGGLE
+============================================================ */
+.mobile-menu-toggle {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  padding: 0.6rem;
+  border-radius: 2px;
+  background: transparent;
+  border: 1px solid transparent;
+  transition: border-color var(--nav-transition), background var(--nav-transition);
+}
+
+.mobile-menu-toggle:hover {
+  border-color: rgba(212, 175, 55, 0.2);
+  background: rgba(212, 175, 55, 0.04);
+}
+
+.mobile-menu-toggle span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--nav-text);
+  border-radius: 1px;
+  transition: all 0.35s var(--nav-ease);
+  transform-origin: center;
+}
+
+/* Hamburger → X animation */
+.mobile-menu-toggle.active span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+  background: var(--nav-accent);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+  background: var(--nav-accent);
+}
+
+/* ============================================================
+   MOBILE NAV DRAWER
+============================================================ */
+.mobile-nav {
+  display: none;
+  flex-direction: column;
+  background: rgba(6, 4, 1, 0.99);
+  border-top: 1px solid rgba(212, 175, 55, 0.12);
+  padding: 0;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.4s var(--nav-ease), padding 0.3s ease;
+}
+
+.mobile-nav.active {
+  display: flex;
+  max-height: 400px;
+  padding: 1rem 0 1.5rem;
+}
+
+.mobile-nav-link {
+  display: block;
+  font-family: var(--nav-font-sans);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--nav-text) !important;
+  text-decoration: none !important;
+  padding: 1rem 2.5rem;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.06);
+  position: relative;
+  transition: color var(--nav-transition), background var(--nav-transition), padding-left 0.3s ease;
+}
+
+.mobile-nav-link::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  background: linear-gradient(90deg, rgba(212, 175, 55, 0.15), transparent);
+  transition: width 0.35s ease;
+}
+
+.mobile-nav-link:hover {
+  color: var(--nav-accent) !important;
+  padding-left: 3.2rem;
+  background: rgba(212, 175, 55, 0.03);
+}
+
+.mobile-nav-link:hover::before {
+  width: 100%;
+}
+
+.mobile-nav-link:last-child {
+  border-bottom: none;
+}
+
+/* ============================================================
+   RESPONSIVE BREAKPOINTS
+============================================================ */
+@media (max-width: 968px) {
+  .nav-left,
+  .nav-right {
+    display: none;
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+  }
+
+  .navbar {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-logo-text {
+    font-size: 1.1rem !important;
+    letter-spacing: 2.5px;
+  }
+}

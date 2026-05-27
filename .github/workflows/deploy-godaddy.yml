@@ -1,0 +1,36 @@
+name: Deploy to GoDaddy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: 🌐 Upload via FTP
+        env:
+          FTP_HOST: ${{ secrets.GODADDY_FTP_HOST }}
+          FTP_USER: ${{ secrets.GODADDY_FTP_USER }}
+          FTP_PASS: ${{ secrets.GODADDY_FTP_PASS }}
+        run: |
+          lftp <<EOF
+            set ftp:ssl-allow yes
+            set ssl:verify-certificate no
+            set ftp:passive-mode yes
+            open -u "$FTP_USER","$FTP_PASS" "$FTP_HOST"
+            cd public_html
+            rm -rf *
+            mirror -R . . --verbose --parallel=3
+            bye
+          EOF
+
+      - name: ✅ Done
+        run: echo "🎉 Deployed to GoDaddy"
